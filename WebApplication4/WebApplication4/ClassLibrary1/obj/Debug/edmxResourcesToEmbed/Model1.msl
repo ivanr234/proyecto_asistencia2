@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GestionAcademicaModelStoreContainer" CdmEntityContainer="GestionAcademicaEntities">
+    <EntitySetMapping Name="Administradores">
+      <EntityTypeMapping TypeName="GestionAcademicaModel.Administradores">
+        <MappingFragment StoreEntitySet="Administradores">
+          <ScalarProperty Name="administrador_id" ColumnName="administrador_id" />
+          <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Aprendices">
+      <EntityTypeMapping TypeName="GestionAcademicaModel.Aprendices">
+        <MappingFragment StoreEntitySet="Aprendices">
+          <ScalarProperty Name="aprendiz_id" ColumnName="aprendiz_id" />
+          <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellido" ColumnName="apellido" />
+          <ScalarProperty Name="numero_aprendiz" ColumnName="numero_aprendiz" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="correo" ColumnName="correo" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Asistencias">
+      <EntityTypeMapping TypeName="GestionAcademicaModel.Asistencias">
+        <MappingFragment StoreEntitySet="Asistencias">
+          <ScalarProperty Name="asistencia_id" ColumnName="asistencia_id" />
+          <ScalarProperty Name="aprendiz_id" ColumnName="aprendiz_id" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="hora" ColumnName="hora" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Competencias">
+      <EntityTypeMapping TypeName="GestionAcademicaModel.Competencias">
+        <MappingFragment StoreEntitySet="Competencias">
+          <ScalarProperty Name="competencia_id" ColumnName="competencia_id" />
+          <ScalarProperty Name="codigo_competencia" ColumnName="codigo_competencia" />
+          <ScalarProperty Name="nombre_competencia" ColumnName="nombre_competencia" />
+          <ScalarProperty Name="duracion_competencia" ColumnName="duracion_competencia" />
+          <ScalarProperty Name="tipo_competencia" ColumnName="tipo_competencia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Fichas">
+      <EntityTypeMapping TypeName="GestionAcademicaModel.Fichas">
+        <MappingFragment StoreEntitySet="Fichas">
+          <ScalarProperty Name="ficha_id" ColumnName="ficha_id" />
+          <ScalarProperty Name="numero_ficha" ColumnName="numero_ficha" />
+          <ScalarProperty Name="cupo_ficha" ColumnName="cupo_ficha" />
+          <ScalarProperty Name="tipo_ficha" ColumnName="tipo_ficha" />
+          <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+          <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+          <ScalarProperty Name="programa_id" ColumnName="programa_id" />
+          <ScalarProperty Name="instructor_id" ColumnName="instructor_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Instructores">
+      <EntityTypeMapping TypeName="GestionAcademicaModel.Instructores">
+        <MappingFragment StoreEntitySet="Instructores">
+          <ScalarProperty Name="instructor_id" ColumnName="instructor_id" />
+          <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="numero" ColumnName="numero" />
+          <ScalarProperty Name="tipo_instructor" ColumnName="tipo_instructor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Programas">
+      <EntityTypeMapping TypeName="GestionAcademicaModel.Programas">
+        <MappingFragment StoreEntitySet="Programas">
+          <ScalarProperty Name="programa_id" ColumnName="programa_id" />
+          <ScalarProperty Name="nombre_programa" ColumnName="nombre_programa" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="duracion_programa" ColumnName="duracion_programa" />
+          <ScalarProperty Name="tipo_programa" ColumnName="tipo_programa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reportes_Incapacidad">
+      <EntityTypeMapping TypeName="GestionAcademicaModel.Reportes_Incapacidad">
+        <MappingFragment StoreEntitySet="Reportes_Incapacidad">
+          <ScalarProperty Name="reporte_id" ColumnName="reporte_id" />
+          <ScalarProperty Name="fecha_incapacidad" ColumnName="fecha_incapacidad" />
+          <ScalarProperty Name="hora_incapacidad" ColumnName="hora_incapacidad" />
+          <ScalarProperty Name="soporte_id" ColumnName="soporte_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Soportes_Asistencia">
+      <EntityTypeMapping TypeName="GestionAcademicaModel.Soportes_Asistencia">
+        <MappingFragment StoreEntitySet="Soportes_Asistencia">
+          <ScalarProperty Name="soporte_id" ColumnName="soporte_id" />
+          <ScalarProperty Name="tipo_incapacidad" ColumnName="tipo_incapacidad" />
+          <ScalarProperty Name="formato_soporte" ColumnName="formato_soporte" />
+          <ScalarProperty Name="asistencia_id" ColumnName="asistencia_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="GestionAcademicaModel.Usuarios">
+        <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellido" ColumnName="apellido" />
+          <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+          <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+          <ScalarProperty Name="tipo_usuario" ColumnName="tipo_usuario" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="numero_documento" ColumnName="numero_documento" />
+          <ScalarProperty Name="tipo_documento" ColumnName="tipo_documento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Ficha_Aprendiz" TypeName="GestionAcademicaModel.Ficha_Aprendiz" StoreEntitySet="Ficha_Aprendiz">
+      <EndProperty Name="Aprendices">
+        <ScalarProperty Name="aprendiz_id" ColumnName="aprendiz_id" />
+      </EndProperty>
+      <EndProperty Name="Fichas">
+        <ScalarProperty Name="ficha_id" ColumnName="ficha_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Programa_Competencia" TypeName="GestionAcademicaModel.Programa_Competencia" StoreEntitySet="Programa_Competencia">
+      <EndProperty Name="Competencias">
+        <ScalarProperty Name="competencia_id" ColumnName="competencia_id" />
+      </EndProperty>
+      <EndProperty Name="Programas">
+        <ScalarProperty Name="programa_id" ColumnName="programa_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

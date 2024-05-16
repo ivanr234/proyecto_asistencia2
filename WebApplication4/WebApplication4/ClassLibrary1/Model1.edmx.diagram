@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="01df6988ebd8466cbbdd1315cae3f05c" Name="Diagram1">
+        <EntityTypeShape EntityType="GestionAcademicaModel.Administradores" Width="1.5" PointX="3" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAcademicaModel.Aprendices" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAcademicaModel.Asistencias" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAcademicaModel.Competencias" Width="1.5" PointX="0.75" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAcademicaModel.Fichas" Width="1.5" PointX="5.25" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAcademicaModel.Instructores" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAcademicaModel.Programas" Width="1.5" PointX="3" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAcademicaModel.Reportes_Incapacidad" Width="1.5" PointX="9.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAcademicaModel.Soportes_Asistencia" Width="1.5" PointX="7.5" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAcademicaModel.Usuarios" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <AssociationConnector Association="GestionAcademicaModel.FK__Administr__usuar__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionAcademicaModel.FK__Aprendice__usuar__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionAcademicaModel.FK__Asistenci__apren__6A30C649" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionAcademicaModel.FK__Soportes___asist__6D0D32F4" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionAcademicaModel.FK__Fichas__instruct__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionAcademicaModel.FK__Fichas__programa__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionAcademicaModel.FK__Instructo__usuar__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionAcademicaModel.FK__Reportes___sopor__6FE99F9F" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionAcademicaModel.Ficha_Aprendiz" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionAcademicaModel.Programa_Competencia" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

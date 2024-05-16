@@ -1,0 +1,166 @@
+﻿@model IEnumerable<ClassLibrary1.Aprendices>
+
+@{
+    
+    Layout = null;
+}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link href='https://fonts.googleapis.com/css?family=Work Sans' rel='stylesheet'>
+<style>
+    body {
+        font-family: 'Work Sans';
+        font-size: 22px;
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        background-color: #39A900;
+        padding: 10px 20px;
+        border-bottom: 8px solid #ffffff;
+        text-align: center;
+        color: #ffffff;
+        font-weight: bolder;
+    }
+
+    h1 {
+        font-weight: bolder;
+    }
+
+    nav {
+        background-color: #39A900;
+        padding: 15px 0;
+        text-align: center;
+        border-top: 1px solid #ffffff; /* Línea que separa la cabecera del menú */
+    }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-weight: bold;
+        }
+
+            nav a:hover {
+                background-color: #53bd1d;
+                border-radius: 10px;
+                text-decoration: none;
+                color: white;
+            }
+
+    .container {
+        margin: 20px auto;
+        max-width: 1200px;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        background-color: #DADADA;
+        border: 8px solid white;
+        border-radius: 18px;
+        text-align: center;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .btn-group {
+    }
+
+        .btn-group > .btn:not(:last-child):not(.dropdown-toggle) {
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 5px;
+        }
+
+        .btn-group > .btn:not(:first-child) {
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 5px;
+        }
+
+    .btn-primary {
+        color: white;
+        background-color: #00324D;
+        border-color: #16253500;
+    }
+
+    .action-button {
+        background-color: #4CAF50; /* Verde */
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+        .action-button:hover {
+            background-color: limegreen;
+        }
+</style>
+<header>
+    <h1>Gestionar Aprendiz</h1>
+</header>
+
+<nav>
+    <a href="https://localhost:44304/lovi/Index">Inicio</a>
+    <a href="https://localhost:44304/Programas/Index">Gestionar Programas</a>
+    <a href="https://localhost:44304/Fichas/Index">Gestionar Fichas</a>
+    <a href="https://localhost:44304/Instructores/Index">Gestionar Instructores</a>
+    <a href="#">Cerrar Sesión</a>
+</nav>
+
+<table class="table">
+    <tr>
+
+
+        <th>NOMBRE</th>
+        <th>APELLIDO</th>
+        <th>NUMERO APRENDIZ</th>
+        <th>DIRECCION</th>
+        <th>CORREO ELECTRONICO</th>
+        <th>ESTADO</th>
+        <th>ACCIONES</th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.numero_aprendiz)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.correo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.estado)
+            </td>
+            
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.aprendiz_id } , new { @class = "btn btn-primary mr-2" }) 
+                @Html.ActionLink("Details", "Details", new { id = item.aprendiz_id }, new { @class = "btn btn-info mr-2" }) 
+                @Html.ActionLink("Delete", "Delete", new { id = item.aprendiz_id }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
