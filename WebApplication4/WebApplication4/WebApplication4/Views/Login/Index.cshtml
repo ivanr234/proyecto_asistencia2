@@ -1,0 +1,49 @@
+﻿@model WebApplication4.Models.UsuarioRolViewModel
+
+@{
+    ViewBag.Title = "Inicio de Sesión";
+    Layout = null;
+}
+
+@using (Html.BeginForm("Index", "Login", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.tipo_documento, "Tipo de Documento", new { @class = "control-label" })
+        <div>
+            @Html.DropDownListFor(model => model.tipo_documento, new SelectList(
+                new List<Object>{
+                    new { Value = "Cedula", Text = "Cédula de Ciudadanía" },
+                    new { Value = "Tarjeta", Text = "Tarjeta de Identidad" },
+                    new { Value = "C.E", Text = "Cédula de Extrajería" },
+                    new { Value = "PEP", Text = "PEP" },
+                    new { Value = "Permiso", Text = "Permiso por protección personal" }
+                },
+                "Value",  
+                "Text"),
+                new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.numero_documento, "Número de Documento", new { @class = "control-label" })
+        <div>
+            @Html.TextBoxFor(model => model.numero_documento, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.contraseña, "Contraseña", new { @class = "control-label" })
+        <div>
+            @Html.PasswordFor(model => model.contraseña, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.Error))
+{
+    <div class="alert alert-danger" role="alert">@ViewBag.Error</div>
+}

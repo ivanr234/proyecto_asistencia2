@@ -103,11 +103,13 @@
     <Compile Include="Controllers\AprendicesController.cs" />
     <Compile Include="Controllers\FichasController.cs" />
     <Compile Include="Controllers\InstructoresController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\loviController.cs" />
     <Compile Include="Controllers\ProgramasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\UsuarioRolViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -115,27 +117,28 @@
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Instructores\Create.cshtml" />
-    <Content Include="Views\Instructores\Delete.cshtml" />
-    <Content Include="Views\Instructores\Details.cshtml" />
-    <Content Include="Views\Instructores\Edit.cshtml" />
-    <Content Include="Views\Instructores\Index.cshtml" />
-    <Content Include="Views\Fichas\Create.cshtml" />
-    <Content Include="Views\Fichas\Delete.cshtml" />
-    <Content Include="Views\Fichas\Details.cshtml" />
-    <Content Include="Views\Fichas\Edit.cshtml" />
-    <Content Include="Views\Fichas\Index.cshtml" />
-    <Content Include="Views\Aprendices\Create.cshtml" />
-    <Content Include="Views\Aprendices\Delete.cshtml" />
-    <Content Include="Views\Aprendices\Details.cshtml" />
-    <Content Include="Views\Aprendices\Edit.cshtml" />
-    <Content Include="Views\Aprendices\Index.cshtml" />
     <Content Include="Views\Programas\Create.cshtml" />
     <Content Include="Views\Programas\Delete.cshtml" />
     <Content Include="Views\Programas\Details.cshtml" />
     <Content Include="Views\Programas\Edit.cshtml" />
     <Content Include="Views\Programas\Index.cshtml" />
     <Content Include="Views\lovi\Index.cshtml" />
+    <Content Include="Views\Fichas\Create.cshtml" />
+    <Content Include="Views\Fichas\Delete.cshtml" />
+    <Content Include="Views\Fichas\Details.cshtml" />
+    <Content Include="Views\Fichas\Edit.cshtml" />
+    <Content Include="Views\Fichas\Index.cshtml" />
+    <Content Include="Views\Instructores\Create.cshtml" />
+    <Content Include="Views\Instructores\Delete.cshtml" />
+    <Content Include="Views\Instructores\Details.cshtml" />
+    <Content Include="Views\Instructores\Edit.cshtml" />
+    <Content Include="Views\Instructores\Index.cshtml" />
+    <Content Include="Views\Aprendices\Create.cshtml" />
+    <Content Include="Views\Aprendices\Delete.cshtml" />
+    <Content Include="Views\Aprendices\Details.cshtml" />
+    <Content Include="Views\Aprendices\Edit.cshtml" />
+    <Content Include="Views\Aprendices\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -145,7 +148,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClassLibrary1\ClassLibrary1.csproj">

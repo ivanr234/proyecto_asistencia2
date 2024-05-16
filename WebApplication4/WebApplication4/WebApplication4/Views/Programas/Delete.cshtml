@@ -1,106 +1,56 @@
 ﻿@model ClassLibrary1.Programas
 
 @{
-    ViewBag.Title = "Eliminar Programa";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Delete";
 }
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>@ViewBag.Title</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
-    <style>
-        body {
-            background-color: #f8f9fa;
-            font-family: Arial, sans-serif;
-        }
+<h2>Delete</h2>
 
-        .container {
-            margin-top: 50px;
-        }
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Programas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre_programa)
+        </dt>
 
-        .card {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
+        <dd>
+            @Html.DisplayFor(model => model.nombre_programa)
+        </dd>
 
-        .card-header {
-            background-color: #dc3545;
-            color: white;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-        }
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </dt>
 
-        .card-body {
-            padding: 20px;
-        }
+        <dd>
+            @Html.DisplayFor(model => model.descripcion)
+        </dd>
 
-        .form-actions {
-            margin-top: 20px;
-        }
+        <dt>
+            @Html.DisplayNameFor(model => model.duracion_programa)
+        </dt>
 
-        .btn {
-            margin-right: 10px;
-        }
-    </style>
-</head>
-<body>
+        <dd>
+            @Html.DisplayFor(model => model.duracion_programa)
+        </dd>
 
-    <div class="container">
-        <div class="card">
-            <div class="card-header">
-                <h2 class="mb-0">Eliminar Programa</h2>
-            </div>
-            <div class="card-body">
-                <h3>¿Estás seguro de que quieres eliminar este registro?</h3>
-                <hr />
-                <dl class="row">
-                    <dt class="col-sm-3">
-                        @Html.DisplayNameFor(model => model.nombre_programa)
-                    </dt>
-                    <dd class="col-sm-9">
-                        @Html.DisplayFor(model => model.nombre_programa)
-                    </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.tipo_programa)
+        </dt>
 
-                    <dt class="col-sm-3">
-                        @Html.DisplayNameFor(model => model.descripcion)
-                    </dt>
-                    <dd class="col-sm-9">
-                        @Html.DisplayFor(model => model.descripcion)
-                    </dd>
+        <dd>
+            @Html.DisplayFor(model => model.tipo_programa)
+        </dd>
 
-                    <dt class="col-sm-3">
-                        @Html.DisplayNameFor(model => model.duracion_programa)
-                    </dt>
-                    <dd class="col-sm-9">
-                        @Html.DisplayFor(model => model.duracion_programa)
-                    </dd>
+    </dl>
 
-                    <dt class="col-sm-3">
-                        @Html.DisplayNameFor(model => model.tipo_programa)
-                    </dt>
-                    <dd class="col-sm-9">
-                        @Html.DisplayFor(model => model.tipo_programa)
-                    </dd>
-                </dl>
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
 
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
-
-                    <div class="form-actions">
-                        <input type="submit" value="Eliminar" class="btn btn-danger" />
-                        @Html.ActionLink("Volver a la lista", "Index", null, new { @class = "btn btn-secondary" })
-                    </div>
-                }
-            </div>
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
         </div>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+    }
+</div>

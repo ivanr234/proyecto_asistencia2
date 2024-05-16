@@ -5,23 +5,29 @@
       <PropertyRef Name="administrador_id" />
     </Key>
     <Property Name="administrador_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="usuario_id" Type="Int32" />
-    <NavigationProperty Name="Usuarios" Relationship="Self.FK__Administr__usuar__4E88ABD4" FromRole="Administradores" ToRole="Usuarios" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="correo_electronico" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="contraseña" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="numero_documento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="tipo_documento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
   </EntityType>
   <EntityType Name="Aprendices">
     <Key>
       <PropertyRef Name="aprendiz_id" />
     </Key>
     <Property Name="aprendiz_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="usuario_id" Type="Int32" />
     <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="correo_electronico" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="contraseña" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="numero_documento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="tipo_documento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="numero_aprendiz" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="Usuarios" Relationship="Self.FK__Aprendice__usuar__5DCAEF64" FromRole="Aprendices" ToRole="Usuarios" />
-    <NavigationProperty Name="Asistencias" Relationship="Self.FK__Asistenci__apren__6A30C649" FromRole="Aprendices" ToRole="Asistencias" />
+    <NavigationProperty Name="Asistencias" Relationship="Self.FK__Asistenci__apren__534D60F1" FromRole="Aprendices" ToRole="Asistencias" />
     <NavigationProperty Name="Fichas" Relationship="Self.Ficha_Aprendiz" FromRole="Aprendices" ToRole="Fichas" />
   </EntityType>
   <EntityType Name="Asistencias">
@@ -33,8 +39,8 @@
     <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="hora" Type="Time" Nullable="false" Precision="7" />
     <Property Name="tipo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="Aprendices" Relationship="Self.FK__Asistenci__apren__6A30C649" FromRole="Asistencias" ToRole="Aprendices" />
-    <NavigationProperty Name="Soportes_Asistencia" Relationship="Self.FK__Soportes___asist__6D0D32F4" FromRole="Asistencias" ToRole="Soportes_Asistencia" />
+    <NavigationProperty Name="Aprendices" Relationship="Self.FK__Asistenci__apren__534D60F1" FromRole="Asistencias" ToRole="Aprendices" />
+    <NavigationProperty Name="Soportes_Asistencia" Relationship="Self.FK__Soportes___asist__5629CD9C" FromRole="Asistencias" ToRole="Soportes_Asistencia" />
   </EntityType>
   <EntityType Name="Competencias">
     <Key>
@@ -59,8 +65,8 @@
     <Property Name="fecha_fin" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="programa_id" Type="Int32" Nullable="false" />
     <Property Name="instructor_id" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Instructores" Relationship="Self.FK__Fichas__instruct__59063A47" FromRole="Fichas" ToRole="Instructores" />
-    <NavigationProperty Name="Programas" Relationship="Self.FK__Fichas__programa__5812160E" FromRole="Fichas" ToRole="Programas" />
+    <NavigationProperty Name="Instructores" Relationship="Self.FK__Fichas__instruct__46E78A0C" FromRole="Fichas" ToRole="Instructores" />
+    <NavigationProperty Name="Programas" Relationship="Self.FK__Fichas__programa__45F365D3" FromRole="Fichas" ToRole="Programas" />
     <NavigationProperty Name="Aprendices" Relationship="Self.Ficha_Aprendiz" FromRole="Fichas" ToRole="Aprendices" />
   </EntityType>
   <EntityType Name="Instructores">
@@ -68,12 +74,16 @@
       <PropertyRef Name="instructor_id" />
     </Key>
     <Property Name="instructor_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="usuario_id" Type="Int32" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="correo_electronico" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="contraseña" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="numero_documento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="tipo_documento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="numero" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="tipo_instructor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Fichas" Relationship="Self.FK__Fichas__instruct__59063A47" FromRole="Instructores" ToRole="Fichas" />
-    <NavigationProperty Name="Usuarios" Relationship="Self.FK__Instructo__usuar__534D60F1" FromRole="Instructores" ToRole="Usuarios" />
+    <NavigationProperty Name="Fichas" Relationship="Self.FK__Fichas__instruct__46E78A0C" FromRole="Instructores" ToRole="Fichas" />
   </EntityType>
   <EntityType Name="Programas">
     <Key>
@@ -84,7 +94,7 @@
     <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="duracion_programa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="tipo_programa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="Fichas" Relationship="Self.FK__Fichas__programa__5812160E" FromRole="Programas" ToRole="Fichas" />
+    <NavigationProperty Name="Fichas" Relationship="Self.FK__Fichas__programa__45F365D3" FromRole="Programas" ToRole="Fichas" />
     <NavigationProperty Name="Competencias" Relationship="Self.Programa_Competencia" FromRole="Programas" ToRole="Competencias" />
   </EntityType>
   <EntityType Name="Reportes_Incapacidad">
@@ -95,7 +105,7 @@
     <Property Name="fecha_incapacidad" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="hora_incapacidad" Type="Time" Nullable="false" Precision="7" />
     <Property Name="soporte_id" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Soportes_Asistencia" Relationship="Self.FK__Reportes___sopor__6FE99F9F" FromRole="Reportes_Incapacidad" ToRole="Soportes_Asistencia" />
+    <NavigationProperty Name="Soportes_Asistencia" Relationship="Self.FK__Reportes___sopor__59063A47" FromRole="Reportes_Incapacidad" ToRole="Soportes_Asistencia" />
   </EntityType>
   <EntityType Name="Soportes_Asistencia">
     <Key>
@@ -105,51 +115,10 @@
     <Property Name="tipo_incapacidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="formato_soporte" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="asistencia_id" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Asistencias" Relationship="Self.FK__Soportes___asist__6D0D32F4" FromRole="Soportes_Asistencia" ToRole="Asistencias" />
-    <NavigationProperty Name="Reportes_Incapacidad" Relationship="Self.FK__Reportes___sopor__6FE99F9F" FromRole="Soportes_Asistencia" ToRole="Reportes_Incapacidad" />
+    <NavigationProperty Name="Asistencias" Relationship="Self.FK__Soportes___asist__5629CD9C" FromRole="Soportes_Asistencia" ToRole="Asistencias" />
+    <NavigationProperty Name="Reportes_Incapacidad" Relationship="Self.FK__Reportes___sopor__59063A47" FromRole="Soportes_Asistencia" ToRole="Reportes_Incapacidad" />
   </EntityType>
-  <EntityType Name="Usuarios">
-    <Key>
-      <PropertyRef Name="usuario_id" />
-    </Key>
-    <Property Name="usuario_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="correo_electronico" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="contraseña" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="tipo_usuario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="numero_documento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="tipo_documento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="Administradores" Relationship="Self.FK__Administr__usuar__4E88ABD4" FromRole="Usuarios" ToRole="Administradores" />
-    <NavigationProperty Name="Aprendices" Relationship="Self.FK__Aprendice__usuar__5DCAEF64" FromRole="Usuarios" ToRole="Aprendices" />
-    <NavigationProperty Name="Instructores" Relationship="Self.FK__Instructo__usuar__534D60F1" FromRole="Usuarios" ToRole="Instructores" />
-  </EntityType>
-  <Association Name="FK__Administr__usuar__4E88ABD4">
-    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
-    <End Role="Administradores" Type="Self.Administradores" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Usuarios">
-        <PropertyRef Name="usuario_id" />
-      </Principal>
-      <Dependent Role="Administradores">
-        <PropertyRef Name="usuario_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Aprendice__usuar__5DCAEF64">
-    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
-    <End Role="Aprendices" Type="Self.Aprendices" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Usuarios">
-        <PropertyRef Name="usuario_id" />
-      </Principal>
-      <Dependent Role="Aprendices">
-        <PropertyRef Name="usuario_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Asistenci__apren__6A30C649">
+  <Association Name="FK__Asistenci__apren__534D60F1">
     <End Role="Aprendices" Type="Self.Aprendices" Multiplicity="1" />
     <End Role="Asistencias" Type="Self.Asistencias" Multiplicity="*" />
     <ReferentialConstraint>
@@ -161,7 +130,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Soportes___asist__6D0D32F4">
+  <Association Name="FK__Soportes___asist__5629CD9C">
     <End Role="Asistencias" Type="Self.Asistencias" Multiplicity="1" />
     <End Role="Soportes_Asistencia" Type="Self.Soportes_Asistencia" Multiplicity="*" />
     <ReferentialConstraint>
@@ -173,7 +142,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Fichas__instruct__59063A47">
+  <Association Name="FK__Fichas__instruct__46E78A0C">
     <End Role="Instructores" Type="Self.Instructores" Multiplicity="1" />
     <End Role="Fichas" Type="Self.Fichas" Multiplicity="*" />
     <ReferentialConstraint>
@@ -185,7 +154,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Fichas__programa__5812160E">
+  <Association Name="FK__Fichas__programa__45F365D3">
     <End Role="Programas" Type="Self.Programas" Multiplicity="1" />
     <End Role="Fichas" Type="Self.Fichas" Multiplicity="*" />
     <ReferentialConstraint>
@@ -197,19 +166,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Instructo__usuar__534D60F1">
-    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
-    <End Role="Instructores" Type="Self.Instructores" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Usuarios">
-        <PropertyRef Name="usuario_id" />
-      </Principal>
-      <Dependent Role="Instructores">
-        <PropertyRef Name="usuario_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Reportes___sopor__6FE99F9F">
+  <Association Name="FK__Reportes___sopor__59063A47">
     <End Role="Soportes_Asistencia" Type="Self.Soportes_Asistencia" Multiplicity="1" />
     <End Role="Reportes_Incapacidad" Type="Self.Reportes_Incapacidad" Multiplicity="*" />
     <ReferentialConstraint>
@@ -239,36 +196,23 @@
     <EntitySet Name="Programas" EntityType="Self.Programas" />
     <EntitySet Name="Reportes_Incapacidad" EntityType="Self.Reportes_Incapacidad" />
     <EntitySet Name="Soportes_Asistencia" EntityType="Self.Soportes_Asistencia" />
-    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
-    <AssociationSet Name="FK__Administr__usuar__4E88ABD4" Association="Self.FK__Administr__usuar__4E88ABD4">
-      <End Role="Usuarios" EntitySet="Usuarios" />
-      <End Role="Administradores" EntitySet="Administradores" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Aprendice__usuar__5DCAEF64" Association="Self.FK__Aprendice__usuar__5DCAEF64">
-      <End Role="Usuarios" EntitySet="Usuarios" />
-      <End Role="Aprendices" EntitySet="Aprendices" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Asistenci__apren__6A30C649" Association="Self.FK__Asistenci__apren__6A30C649">
+    <AssociationSet Name="FK__Asistenci__apren__534D60F1" Association="Self.FK__Asistenci__apren__534D60F1">
       <End Role="Aprendices" EntitySet="Aprendices" />
       <End Role="Asistencias" EntitySet="Asistencias" />
     </AssociationSet>
-    <AssociationSet Name="FK__Soportes___asist__6D0D32F4" Association="Self.FK__Soportes___asist__6D0D32F4">
+    <AssociationSet Name="FK__Soportes___asist__5629CD9C" Association="Self.FK__Soportes___asist__5629CD9C">
       <End Role="Asistencias" EntitySet="Asistencias" />
       <End Role="Soportes_Asistencia" EntitySet="Soportes_Asistencia" />
     </AssociationSet>
-    <AssociationSet Name="FK__Fichas__instruct__59063A47" Association="Self.FK__Fichas__instruct__59063A47">
+    <AssociationSet Name="FK__Fichas__instruct__46E78A0C" Association="Self.FK__Fichas__instruct__46E78A0C">
       <End Role="Instructores" EntitySet="Instructores" />
       <End Role="Fichas" EntitySet="Fichas" />
     </AssociationSet>
-    <AssociationSet Name="FK__Fichas__programa__5812160E" Association="Self.FK__Fichas__programa__5812160E">
+    <AssociationSet Name="FK__Fichas__programa__45F365D3" Association="Self.FK__Fichas__programa__45F365D3">
       <End Role="Programas" EntitySet="Programas" />
       <End Role="Fichas" EntitySet="Fichas" />
     </AssociationSet>
-    <AssociationSet Name="FK__Instructo__usuar__534D60F1" Association="Self.FK__Instructo__usuar__534D60F1">
-      <End Role="Usuarios" EntitySet="Usuarios" />
-      <End Role="Instructores" EntitySet="Instructores" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Reportes___sopor__6FE99F9F" Association="Self.FK__Reportes___sopor__6FE99F9F">
+    <AssociationSet Name="FK__Reportes___sopor__59063A47" Association="Self.FK__Reportes___sopor__59063A47">
       <End Role="Soportes_Asistencia" EntitySet="Soportes_Asistencia" />
       <End Role="Reportes_Incapacidad" EntitySet="Reportes_Incapacidad" />
     </AssociationSet>
@@ -280,5 +224,21 @@
       <End Role="Competencias" EntitySet="Competencias" />
       <End Role="Programas" EntitySet="Programas" />
     </AssociationSet>
+    <FunctionImport Name="sp_IniciarSesion" ReturnType="Collection(String)">
+      <Parameter Name="numero_documento" Mode="In" Type="String" />
+      <Parameter Name="tipo_documento" Mode="In" Type="String" />
+      <Parameter Name="contraseña" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_OlvidarContraseña">
+      <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+      <Parameter Name="NuevaContraseña" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_RegistrarUsuario">
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Apellido" Mode="In" Type="String" />
+      <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+      <Parameter Name="Contraseña" Mode="In" Type="String" />
+      <Parameter Name="TipoUsuario" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
 </Schema>

@@ -5,7 +5,12 @@
       <EntityTypeMapping TypeName="GestionAcademicaModel.Administradores">
         <MappingFragment StoreEntitySet="Administradores">
           <ScalarProperty Name="administrador_id" ColumnName="administrador_id" />
-          <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellido" ColumnName="apellido" />
+          <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+          <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+          <ScalarProperty Name="numero_documento" ColumnName="numero_documento" />
+          <ScalarProperty Name="tipo_documento" ColumnName="tipo_documento" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -13,9 +18,12 @@
       <EntityTypeMapping TypeName="GestionAcademicaModel.Aprendices">
         <MappingFragment StoreEntitySet="Aprendices">
           <ScalarProperty Name="aprendiz_id" ColumnName="aprendiz_id" />
-          <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
           <ScalarProperty Name="apellido" ColumnName="apellido" />
+          <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+          <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+          <ScalarProperty Name="numero_documento" ColumnName="numero_documento" />
+          <ScalarProperty Name="tipo_documento" ColumnName="tipo_documento" />
           <ScalarProperty Name="numero_aprendiz" ColumnName="numero_aprendiz" />
           <ScalarProperty Name="direccion" ColumnName="direccion" />
           <ScalarProperty Name="correo" ColumnName="correo" />
@@ -63,7 +71,12 @@
       <EntityTypeMapping TypeName="GestionAcademicaModel.Instructores">
         <MappingFragment StoreEntitySet="Instructores">
           <ScalarProperty Name="instructor_id" ColumnName="instructor_id" />
-          <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellido" ColumnName="apellido" />
+          <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+          <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+          <ScalarProperty Name="numero_documento" ColumnName="numero_documento" />
+          <ScalarProperty Name="tipo_documento" ColumnName="tipo_documento" />
           <ScalarProperty Name="direccion" ColumnName="direccion" />
           <ScalarProperty Name="numero" ColumnName="numero" />
           <ScalarProperty Name="tipo_instructor" ColumnName="tipo_instructor" />
@@ -101,21 +114,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Usuarios">
-      <EntityTypeMapping TypeName="GestionAcademicaModel.Usuarios">
-        <MappingFragment StoreEntitySet="Usuarios">
-          <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
-          <ScalarProperty Name="nombre" ColumnName="nombre" />
-          <ScalarProperty Name="apellido" ColumnName="apellido" />
-          <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
-          <ScalarProperty Name="contraseña" ColumnName="contraseña" />
-          <ScalarProperty Name="tipo_usuario" ColumnName="tipo_usuario" />
-          <ScalarProperty Name="estado" ColumnName="estado" />
-          <ScalarProperty Name="numero_documento" ColumnName="numero_documento" />
-          <ScalarProperty Name="tipo_documento" ColumnName="tipo_documento" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <AssociationSetMapping Name="Ficha_Aprendiz" TypeName="GestionAcademicaModel.Ficha_Aprendiz" StoreEntitySet="Ficha_Aprendiz">
       <EndProperty Name="Aprendices">
         <ScalarProperty Name="aprendiz_id" ColumnName="aprendiz_id" />
@@ -132,5 +130,8 @@
         <ScalarProperty Name="programa_id" ColumnName="programa_id" />
       </EndProperty>
     </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="sp_IniciarSesion" FunctionName="GestionAcademicaModel.Store.sp_IniciarSesion" />
+    <FunctionImportMapping FunctionImportName="sp_OlvidarContraseña" FunctionName="GestionAcademicaModel.Store.sp_OlvidarContraseña" />
+    <FunctionImportMapping FunctionImportName="sp_RegistrarUsuario" FunctionName="GestionAcademicaModel.Store.sp_RegistrarUsuario" />
   </EntityContainerMapping>
 </Mapping>

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ClassLibrary1.Aprendices>
 
 @{
-    
+
     Layout = null;
 }
 
@@ -154,10 +154,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.estado)
             </td>
-            
+
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.aprendiz_id } , new { @class = "btn btn-primary mr-2" }) 
-                @Html.ActionLink("Details", "Details", new { id = item.aprendiz_id }, new { @class = "btn btn-info mr-2" }) 
+                @Html.ActionLink("Edit", "Edit", new { id = item.aprendiz_id }, new { @class = "btn btn-primary mr-2" })
+                @Html.ActionLink("Details", "Details", new { id = item.aprendiz_id }, new { @class = "btn btn-info mr-2" })
                 @Html.ActionLink("Delete", "Delete", new { id = item.aprendiz_id }, new { @class = "btn btn-danger" })
             </td>
         </tr>

@@ -15,8 +15,11 @@ namespace ClassLibrary1
     public partial class Administradores
     {
         public int administrador_id { get; set; }
-        public Nullable<int> usuario_id { get; set; }
-    
-        public virtual Usuarios Usuarios { get; set; }
+        public string nombre { get; set; }
+        public string apellido { get; set; }
+        public string correo_electronico { get; set; }
+        public string contraseña { get; set; }
+        public string numero_documento { get; set; }
+        public string tipo_documento { get; set; }
     }
 }

@@ -39,7 +39,7 @@ namespace WebApplication4.Controllers
         // GET: Fichas/Create
         public ActionResult Create()
         {
-            ViewBag.instructor_id = new SelectList(db.Instructores, "instructor_id", "direccion");
+            ViewBag.instructor_id = new SelectList(db.Instructores, "instructor_id", "nombre");
             ViewBag.programa_id = new SelectList(db.Programas, "programa_id", "nombre_programa");
             return View();
         }
@@ -58,7 +58,7 @@ namespace WebApplication4.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.instructor_id = new SelectList(db.Instructores, "instructor_id", "direccion", fichas.instructor_id);
+            ViewBag.instructor_id = new SelectList(db.Instructores, "instructor_id", "nombre", fichas.instructor_id);
             ViewBag.programa_id = new SelectList(db.Programas, "programa_id", "nombre_programa", fichas.programa_id);
             return View(fichas);
         }
@@ -75,7 +75,7 @@ namespace WebApplication4.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.instructor_id = new SelectList(db.Instructores, "instructor_id", "direccion", fichas.instructor_id);
+            ViewBag.instructor_id = new SelectList(db.Instructores, "instructor_id", "nombre", fichas.instructor_id);
             ViewBag.programa_id = new SelectList(db.Programas, "programa_id", "nombre_programa", fichas.programa_id);
             return View(fichas);
         }
@@ -93,7 +93,7 @@ namespace WebApplication4.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.instructor_id = new SelectList(db.Instructores, "instructor_id", "direccion", fichas.instructor_id);
+            ViewBag.instructor_id = new SelectList(db.Instructores, "instructor_id", "nombre", fichas.instructor_id);
             ViewBag.programa_id = new SelectList(db.Programas, "programa_id", "nombre_programa", fichas.programa_id);
             return View(fichas);
         }

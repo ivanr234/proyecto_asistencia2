@@ -17,8 +17,7 @@ namespace WebApplication4.Controllers
         // GET: Instructores
         public ActionResult Index()
         {
-            var instructores = db.Instructores.Include(i => i.Usuarios);
-            return View(instructores.ToList());
+            return View(db.Instructores.ToList());
         }
 
         // GET: Instructores/Details/5
@@ -39,7 +38,6 @@ namespace WebApplication4.Controllers
         // GET: Instructores/Create
         public ActionResult Create()
         {
-            ViewBag.usuario_id = new SelectList(db.Usuarios, "usuario_id", "nombre");
             return View();
         }
 
@@ -48,7 +46,7 @@ namespace WebApplication4.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "instructor_id,usuario_id,direccion,numero,tipo_instructor")] Instructores instructores)
+        public ActionResult Create([Bind(Include = "instructor_id,nombre,apellido,correo_electronico,contraseña,numero_documento,tipo_documento,direccion,numero,tipo_instructor")] Instructores instructores)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +55,6 @@ namespace WebApplication4.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.usuario_id = new SelectList(db.Usuarios, "usuario_id", "nombre", instructores.usuario_id);
             return View(instructores);
         }
 
@@ -73,7 +70,6 @@ namespace WebApplication4.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.usuario_id = new SelectList(db.Usuarios, "usuario_id", "nombre", instructores.usuario_id);
             return View(instructores);
         }
 
@@ -82,7 +78,7 @@ namespace WebApplication4.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "instructor_id,usuario_id,direccion,numero,tipo_instructor")] Instructores instructores)
+        public ActionResult Edit([Bind(Include = "instructor_id,nombre,apellido,correo_electronico,contraseña,numero_documento,tipo_documento,direccion,numero,tipo_instructor")] Instructores instructores)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +86,6 @@ namespace WebApplication4.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.usuario_id = new SelectList(db.Usuarios, "usuario_id", "nombre", instructores.usuario_id);
             return View(instructores);
         }
 

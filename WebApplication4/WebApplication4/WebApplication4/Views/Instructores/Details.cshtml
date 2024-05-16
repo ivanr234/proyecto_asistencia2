@@ -1,112 +1,90 @@
 ﻿@model ClassLibrary1.Instructores
 
 @{
-    ViewBag.Title = "Detalles del Instructor";
-    Layout = null;
+    ViewBag.Title = "Details";
 }
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            margin: 0;
-            padding: 0;
-        }
+<h2>Details</h2>
 
-        .card {
-            background-color: #fff;
-            border: none;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            margin: 30px auto;
-            max-width: 600px;
-            border-radius: 20px;
-        }
+<div>
+    <h4>Instructores</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
 
-        .card-header {
-            background-color: #28a745;
-            color: #fff;
-            padding: 20px;
-            border-radius: 15px 15px 0 0;
-            text-align: center;
-        }
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
 
-        .card-body {
-            padding: 30px;
-        }
+        <dt>
+            @Html.DisplayNameFor(model => model.apellido)
+        </dt>
 
-        .form-group {
-            margin-bottom: 20px;
-        }
+        <dd>
+            @Html.DisplayFor(model => model.apellido)
+        </dd>
 
-        .form-control {
-            color: black;
-            border-radius: 10px;
-        }
+        <dt>
+            @Html.DisplayNameFor(model => model.correo_electronico)
+        </dt>
 
-        .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 18px;
-            font-weight: bold;
-        }
+        <dd>
+            @Html.DisplayFor(model => model.correo_electronico)
+        </dd>
 
-            .btn-primary:hover {
-                background-color: #0069d9;
-                border-color: #0062cc;
-            }
+        <dt>
+            @Html.DisplayNameFor(model => model.contraseña)
+        </dt>
 
-        .detail-label {
-            font-weight: bold;
-            color: #333;
-        }
+        <dd>
+            @Html.DisplayFor(model => model.contraseña)
+        </dd>
 
-        .detail-value {
-            color: #666;
-        }
+        <dt>
+            @Html.DisplayNameFor(model => model.numero_documento)
+        </dt>
 
-        .action-buttons {
-            text-align: center;
-        }
-    </style>
-</head>
-<body>
-    <div class="card">
-        <div class="card-header">
-            <h4>@ViewBag.Title</h4>
-        </div>
-        <div class="card-body">
-            <div class="form-group">
-                <label class="detail-label">@Html.DisplayNameFor(model => model.direccion)</label>
-                <p class="detail-value">@Html.DisplayFor(model => model.direccion)</p>
-            </div>
-            <div class="form-group">
-                <label class="detail-label">@Html.DisplayNameFor(model => model.numero)</label>
-                <p class="detail-value">@Html.DisplayFor(model => model.numero)</p>
-            </div>
-            <div class="form-group">
-                <label class="detail-label">@Html.DisplayNameFor(model => model.tipo_instructor)</label>
-                <p class="detail-value">@Html.DisplayFor(model => model.tipo_instructor)</p>
-            </div>
-            <div class="form-group">
-                <label class="detail-label">@Html.DisplayNameFor(model => model.Usuarios.nombre)</label>
-                <p class="detail-value">@Html.DisplayFor(model => model.Usuarios.nombre)</p>
-            </div>
-            <div class="action-buttons">
-                <a href="@Url.Action("Edit", new { id = Model.instructor_id })" class="btn btn-primary">Editar</a>
-                <a href="@Url.Action("Index")" class="btn btn-primary">Volver a la lista</a>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+        <dd>
+            @Html.DisplayFor(model => model.numero_documento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipo_documento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipo_documento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.direccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipo_instructor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipo_instructor)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.instructor_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
