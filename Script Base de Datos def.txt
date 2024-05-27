@@ -1,0 +1,280 @@
+-- Crear la base de datos
+CREATE DATABASE GestionAcademica;
+GO
+
+USE GestionAcademica;
+
+-- Tabla Administradores
+CREATE TABLE Administradores (
+    administrador_id INT PRIMARY KEY IDENTITY,
+    nombre VARCHAR(50) NOT NULL,
+    apellido VARCHAR(50) NOT NULL,
+    correo_electronico VARCHAR(100) UNIQUE,
+    contraseña VARCHAR(255) NOT NULL,
+    numero_documento VARCHAR(20) UNIQUE,
+    tipo_documento VARCHAR(20) NOT NULL
+);
+
+-- Tabla Programas
+CREATE TABLE Programas (
+    programa_id INT PRIMARY KEY IDENTITY,
+    nombre_programa VARCHAR(100) NOT NULL,
+    descripcion VARCHAR(255) NOT NULL,
+    duracion_programa VARCHAR(50) NOT NULL,
+    tipo_programa VARCHAR(50) NOT NULL
+);
+
+-- Tabla Fichas
+CREATE TABLE Fichas (
+    ficha_id INT PRIMARY KEY IDENTITY,
+    numero_ficha VARCHAR(20) NOT NULL,
+    cupo_ficha INT NOT NULL,
+    tipo_ficha VARCHAR(20) NOT NULL,
+    fecha_inicio DATE NOT NULL,
+    fecha_fin DATE NOT NULL,
+    programa_id INT NOT NULL,
+    FOREIGN KEY (programa_id) REFERENCES Programas(programa_id)
+);
+
+-- Tabla Instructores
+CREATE TABLE Instructores (
+    instructor_id INT PRIMARY KEY IDENTITY,
+    nombre VARCHAR(50) NOT NULL,
+    apellido VARCHAR(50) NOT NULL,
+	imagen TEXT NOT NULL,
+    correo_electronico VARCHAR(100) UNIQUE,
+    contraseña VARCHAR(255) NOT NULL,
+    numero_documento VARCHAR(20) UNIQUE,
+    tipo_documento VARCHAR(20) NOT NULL,
+    direccion VARCHAR(100),
+    numero VARCHAR(20) UNIQUE NOT NULL,
+    tipo_instructor VARCHAR(50),
+    ficha_id INT NOT NULL,
+    FOREIGN KEY (ficha_id) REFERENCES Fichas(ficha_id)
+);
+
+-- Tabla Aprendices
+CREATE TABLE Aprendices (
+    aprendiz_id INT PRIMARY KEY IDENTITY,
+    nombre VARCHAR(50) NOT NULL,
+    apellido VARCHAR(50) NOT NULL,
+	imagen TEXT NOT NULL,
+    correo_electronico VARCHAR(100) UNIQUE,
+    contraseña VARCHAR(255) NOT NULL,
+    numero_documento VARCHAR(20) UNIQUE,
+    tipo_documento VARCHAR(20) NOT NULL,
+    numero_aprendiz VARCHAR(20) UNIQUE NOT NULL,
+    direccion VARCHAR(100),
+    estado VARCHAR(20) NOT NULL
+);
+
+-- Tabla Ficha_Aprendiz
+CREATE TABLE Ficha_Aprendiz (
+    ficha_id INT NOT NULL,
+    aprendiz_id INT NOT NULL,
+    PRIMARY KEY (ficha_id, aprendiz_id),
+    FOREIGN KEY (ficha_id) REFERENCES Fichas(ficha_id),
+    FOREIGN KEY (aprendiz_id) REFERENCES Aprendices(aprendiz_id)
+);
+
+-- Tabla Competencias
+CREATE TABLE Competencias (
+    competencia_id INT PRIMARY KEY IDENTITY,
+    codigo_competencia VARCHAR(20) NOT NULL,
+    nombre_competencia VARCHAR(100) NOT NULL,
+    duracion_competencia VARCHAR(50) NOT NULL,
+    tipo_competencia VARCHAR(50) NOT NULL
+);
+
+-- Tabla Programa_Competencia
+CREATE TABLE Programa_Competencia (
+    programa_id INT NOT NULL,
+    competencia_id INT NOT NULL,
+    PRIMARY KEY (programa_id, competencia_id),
+    FOREIGN KEY (programa_id) REFERENCES Programas(programa_id),
+    FOREIGN KEY (competencia_id) REFERENCES Competencias(competencia_id)
+);
+
+-- Tabla Asistencias
+CREATE TABLE Asistencias (
+    asistencia_id INT PRIMARY KEY IDENTITY,
+    aprendiz_id INT NOT NULL,
+    fecha DATE NOT NULL,
+    hora TIME NOT NULL,
+    tipo VARCHAR(20) NOT NULL,
+    FOREIGN KEY (aprendiz_id) REFERENCES Aprendices(aprendiz_id)
+);
+
+-- Tabla Soportes_Asistencia
+CREATE TABLE Soportes_Asistencia (
+    soporte_id INT PRIMARY KEY IDENTITY,
+    tipo_incapacidad VARCHAR(50) NOT NULL,
+    formato_soporte VARCHAR(50) NOT NULL,
+    asistencia_id INT NOT NULL,
+    FOREIGN KEY (asistencia_id) REFERENCES Asistencias(asistencia_id)
+);
+
+-- Tabla Reportes_Incapacidad
+CREATE TABLE Reportes_Incapacidad (
+    reporte_id INT PRIMARY KEY IDENTITY,
+    fecha_incapacidad DATE NOT NULL,
+    hora_incapacidad TIME NOT NULL,
+    soporte_id INT NOT NULL,
+    FOREIGN KEY (soporte_id) REFERENCES Soportes_Asistencia(soporte_id)
+);
+-- Tabla Codigos_Asistencia
+CREATE TABLE Codigos_Asistencia (
+    codigo_id INT PRIMARY KEY IDENTITY,
+    codigo VARCHAR(10) NOT NULL,
+    ficha_id INT NOT NULL,
+    fecha_generacion DATE NOT NULL,
+    hora_generacion TIME NOT NULL,
+    hora_expiracion TIME NOT NULL, -- Si deseas que los códigos expiren
+    UNIQUE(codigo),
+    FOREIGN KEY (ficha_id) REFERENCES Fichas(ficha_id)
+);
+
+-- Procedimiento almacenado Inicio sesión
+DROP PROCEDURE IF EXISTS sp_IniciarSesion;
+GO
+
+CREATE PROCEDURE sp_IniciarSesion
+    @numero_documento VARCHAR(20),
+    @tipo_documento VARCHAR(20),
+    @contraseña VARCHAR(255)
+AS
+BEGIN
+    IF EXISTS (
+        SELECT 1
+        FROM Administradores
+        WHERE numero_documento = @numero_documento
+            AND contraseña = @contraseña
+            AND tipo_documento = @tipo_documento
+    )
+    BEGIN
+        SELECT 'Administrador' AS Rol;
+    END
+    ELSE IF EXISTS (
+        SELECT 1
+        FROM Instructores
+        WHERE numero_documento = @numero_documento
+            AND contraseña = @contraseña
+            AND tipo_documento = @tipo_documento
+    )
+    BEGIN
+        SELECT 'Instructor' AS Rol;
+    END
+    ELSE IF EXISTS (
+        SELECT 1
+        FROM Aprendices
+        WHERE numero_documento = @numero_documento
+            AND contraseña = @contraseña
+            AND tipo_documento = @tipo_documento
+    )
+    BEGIN
+        SELECT 'Aprendiz' AS Rol;
+    END
+    ELSE
+    BEGIN
+        SELECT 'Usuario no encontrado' AS Rol;
+    END
+END
+GO
+
+-- Administradores
+INSERT INTO Administradores (nombre, apellido, correo_electronico, contraseña, numero_documento, tipo_documento)
+VALUES 
+('Pedro', 'González', 'pedro@example.com', 'contraseña789', '456789123', 'C.E'),
+('Lucia', 'Ramirez', 'lucia@example.com', 'contraseña456', '123123123', 'C.C'),
+('Juan', 'Martinez', 'juan@example.com', 'contraseña123', '789789789', 'C.E');
+
+-- Programas
+INSERT INTO Programas (nombre_programa, descripcion, duracion_programa, tipo_programa)
+VALUES 
+('Programa 1', 'Descripción del Programa 1', '6 meses', 'Presencial'),
+('Programa 2', 'Descripción del Programa 2', '12 meses', 'Virtual'),
+('Programa 3', 'Descripción del Programa 3', '9 meses', 'Mixto');
+
+-- Fichas
+INSERT INTO Fichas (numero_ficha, cupo_ficha, tipo_ficha, fecha_inicio, fecha_fin, programa_id)
+VALUES 
+('F001', 20, 'Mañana', '2024-06-01', '2024-12-01', 1),
+('F002', 15, 'Tarde', '2024-07-01', '2024-11-30', 2),
+('F003', 25, 'Noche', '2024-08-01', '2024-10-30', 3);
+
+-- Instructores
+INSERT INTO Instructores (nombre, apellido, imagen, correo_electronico, contraseña, numero_documento, tipo_documento, direccion, numero, tipo_instructor, ficha_id)
+VALUES 
+('Maria', 'López', 'maria_imagen.jpg', 'maria@example.com', 'contraseña456', '987654321', 'C.C', 'Calle 123', '123456789', 'Planta', 1),
+('Juan', 'Pérez', 'juan_imagen.jpg', 'juan@example.com', 'contraseña789', '654987321', 'C.C', 'Avenida 456', '987654321', 'Contratista', 2),
+('Ana', 'Sánchez', 'ana_imagen.jpg', 'ana@example.com', 'contraseña123', '321654987', 'C.C', 'Calle 789', '456123789', 'Planta', 3);
+
+-- Aprendices
+INSERT INTO Aprendices (nombre, apellido, imagen, correo_electronico, contraseña, numero_documento, tipo_documento, numero_aprendiz, direccion, estado)
+VALUES 
+('Carlos', 'Martínez', 'carlos_imagen.jpg', 'carlos@example.com', 'contraseña123', '123456789', 'C.C', 'A001', 'Calle 789', 'Activo'),
+('Ana', 'García', 'ana_imagen.jpg', 'ana@example.com', 'contraseña456', '987654321', 'C.C', 'A002', 'Avenida 123', 'Activo'),
+('Luis', 'Fernández', 'luis_imagen.jpg', 'luis@example.com', 'contraseña789', '654321987', 'C.C', 'A003', 'Calle 456', 'Activo');
+
+-- Ficha_Aprendiz
+INSERT INTO Ficha_Aprendiz (ficha_id, aprendiz_id)
+VALUES 
+(1, 1),
+(2, 2),
+(3, 3);
+
+-- Competencias
+INSERT INTO Competencias (codigo_competencia, nombre_competencia, duracion_competencia, tipo_competencia)
+VALUES 
+('COMP001', 'Programación en Java', '6 semanas', 'Teórica'),
+('COMP002', 'Base de Datos', '8 semanas', 'Práctica'),
+('COMP003', 'Diseño de Interfaces', '4 semanas', 'Práctica');
+
+-- Programa_Competencia
+INSERT INTO Programa_Competencia (programa_id, competencia_id)
+VALUES 
+(1, 1),
+(2, 2),
+(3, 3);
+
+-- Asistencias
+INSERT INTO Asistencias (aprendiz_id, fecha, hora, tipo)
+VALUES 
+(1, '2024-05-01', '08:00:00', 'Entrada'),
+(2, '2024-05-01', '09:00:00', 'Entrada'),
+(3, '2024-05-01', '08:30:00', 'Entrada');
+
+-- Soportes_Asistencia
+INSERT INTO Soportes_Asistencia (tipo_incapacidad, formato_soporte, asistencia_id)
+VALUES 
+('Médica', 'PDF', 1),
+('Médica', 'Imagen', 2),
+('Accidente', 'PDF', 3);
+
+-- Codigos_Asistencia
+INSERT INTO Codigos_Asistencia (codigo, ficha_id, fecha_generacion, hora_generacion, hora_expiracion)
+VALUES 
+('ABC12345', 1, '2024-05-01', '08:00:00', '09:00:00'),
+('DEF67890', 2, '2024-05-01', '09:00:00', '10:00:00'),
+('GHI13579', 3, '2024-05-01', '08:30:00', '09:30:00');
+
+-- Programa_Competencia
+INSERT INTO Programa_Competencia (programa_id, competencia_id)
+VALUES 
+(1, 2), (1, 3), 
+(2, 1), (2, 3), 
+(3, 1), (3, 2);
+
+-- Select para verificar inserciones
+SELECT * FROM Administradores;
+SELECT * FROM Programas;
+SELECT * FROM Fichas;
+SELECT * FROM Instructores;
+SELECT * FROM Aprendices;
+SELECT * FROM Ficha_Aprendiz;
+SELECT * FROM Competencias;
+SELECT * FROM Programa_Competencia;
+SELECT * FROM Asistencias;
+SELECT * FROM Soportes_Asistencia;
+SELECT * FROM Reportes_Incapacidad;
+SELECT * FROM Codigos_Asistencia;
