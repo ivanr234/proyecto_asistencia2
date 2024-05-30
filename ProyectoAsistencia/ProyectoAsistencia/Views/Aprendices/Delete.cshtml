@@ -1,0 +1,156 @@
+﻿@model ClassLibrary1.Aprendices
+
+@{
+    ViewBag.Title = "Eliminar Aprendiz";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewBag.Title</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .card {
+            border-radius: 10px;
+            border: solid 1px #fff;
+            box-shadow: 0 0 18px #808080;
+            border-radius: 10px;
+        }
+
+        .card-header {
+            background-color: #dc3545;
+            color: white;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .form-actions {
+            margin-top: 20px;
+        }
+
+        .btn {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="mb-0">Eliminar Aprendiz</h2>
+            </div>
+            <div class="card-body">
+                <h3>¿Estás seguro de que quieres eliminar este registro?</h3>
+                <hr />
+                <dl class="row">
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.nombre)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.nombre)
+                    </dd>
+
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.apellido)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.apellido)
+                    </dd>
+
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.imagen)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @if (!string.IsNullOrEmpty(Model.imagen))
+                        {
+                            <img src="data:image/png;base64,@Model.imagen" alt="Imagen del aprendiz" class="img-fluid rounded" />
+                        }
+                        else
+                        {
+                            <p>No hay imagen disponible</p>
+                        }
+                    </dd>
+
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.correo_electronico)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.correo_electronico)
+                    </dd>
+
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.contraseña)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.contraseña)
+                    </dd>
+
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.numero_documento)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.numero_documento)
+                    </dd>
+
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.tipo_documento)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.tipo_documento)
+                    </dd>
+
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.numero_aprendiz)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.numero_aprendiz)
+                    </dd>
+
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.direccion)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.direccion)
+                    </dd>
+
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.estado)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.estado)
+                    </dd>
+                </dl>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions">
+                        <input type="submit" value="Eliminar" class="btn btn-danger" />
+                        @Html.ActionLink("Volver a la lista", "Index", null, new { @class = "btn btn-secondary" })
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
