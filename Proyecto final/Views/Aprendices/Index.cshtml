@@ -1,0 +1,287 @@
+﻿@model List<ClassLibrary11.Aprendices>
+
+@{
+    Layout = null;
+
+
+
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte de Asistencias</title>
+    <style>
+        body {
+            font-family: 'Inter';
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+        }
+
+        .sidebar {
+            background-color: #39A900;
+            color: white;
+            padding: 20px;
+            width: 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+            .sidebar img {
+                width: 100px;
+                margin-bottom: 20px;
+                border-radius: 50%;
+            }
+
+            .sidebar p {
+                text-align: center;
+            }
+
+        .main {
+            flex: 1;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .header {
+            background-color: #39A900;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 10px;
+        }
+
+            .header a {
+                color: white;
+                text-decoration: none;
+                margin-left: 20px;
+            }
+
+            .header button {
+                background-color: #2c0770;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                cursor: pointer;
+                border-radius: 10px;
+            }
+
+        .report-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+            .report-table th,
+            .report-table td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: center;
+            }
+
+            .report-table th {
+                background-color: #003366;
+                color: white;
+            }
+
+            .report-table td:nth-child(odd) {
+                background-color: #f9f9f9;
+            }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Estilos para el contenido del modal */
+        .modal-content {
+            background-color: #fefefe;
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+            text-align: center;
+            max-width: 80%; /* Ancho máximo para una mejor presentación en pantallas grandes */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .modal input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        .modal button {
+            background-color: #39A900;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        @{
+            var nombre = Model != null && Model.Count > 0 ? Model[0].nombre : "USER NAME";
+            var imagenBase64 = Model != null && Model.Count > 0 && !string.IsNullOrEmpty(Model[0].imagen) ? Convert.FromBase64String(Model[0].imagen) : new byte[0];
+        }
+
+        <img src="data:image/png;base64,@(imagenBase64.Length > 0 ? Convert.ToBase64String(imagenBase64) : "")" alt="User Image">
+        <h2>@nombre</h2>
+        <p>BIENVENIDA SR(A) "@nombre" AL SISTEMA DE ASISTENCIAS DEL CENTRO PARA LA INDUSTRIA PETROQUIMICA</p>
+        <button onclick="cerrarSesion()">Cerrar Sesión</button>
+    </div>
+    <div class="main">
+        <div class="header">
+            <div>
+                <a href="#">INICIO</a>
+                <a href="#">VER REPORTES</a>
+                <a href="#">REGISTRAR ASISTENCIAS</a>
+            </div>
+            <button id="registrarAsistenciaBtn">REGISTRAR ASISTENCIAS</button>
+        </div>
+        <h2>REPORTE ASISTENCIAS</h2>
+        <table class="report-table">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Nombre de la competencia</th>
+                    <th>Código de asistencia</th>
+                    <th>Asistencias</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Count > 0 && Model[0].Asistencias != null)
+                {
+                    foreach (var asistencia in Model[0].Asistencias)
+                    {
+                        <tr>
+                            <td>@asistencia.fecha.ToString("dd/MM/yyyy")</td>
+                            <td>@asistencia.asistencia_id</td>
+                            <td>@asistencia.tipo</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="4">No hay datos de asistencias disponibles.</td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="fecha">FECHA:</p>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    var fechaElement = document.getElementById('fecha');
+                    var hoy = new Date();
+                    var fechaFormateada = hoy.getDate() + '/' + (hoy.getMonth() + 1) + '/' + hoy.getFullYear();
+                    fechaElement.innerHTML = 'FECHA: ' + fechaFormateada;
+                });
+            </script>
+
+            <h2>REGISTRAR ASISTENCIA</h2>
+
+            <div class="container">
+                @using (Html.BeginForm("VerificarCodigo", "Asistencias", FormMethod.Post))
+                {
+                    <div class="form-group">
+                        <label for="codigoIngresado">Ingrese el código de verificación:</label>
+                        <input type="text" class="form-control" id="codigoIngresado" name="codigoIngresado" required />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Verificar</button>
+                    if (ViewBag.Mensaje != null)
+                    {
+                        <div class="alert alert-success" style="margin-top: 10px;">
+                            @ViewBag.Mensaje
+                        </div>
+                    }
+
+                    if (ViewBag.Error != null)
+                    {
+                        <div class="alert alert-danger" style="margin-top: 10px;">
+                            @ViewBag.Error
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+
+        function cerrarSesion() {
+            // Aquí puedes agregar la lógica para cerrar la sesión, como redirigir a una página de inicio de sesión o limpiar las cookies
+            alert("Sesión cerrada exitosamente");
+        }
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("registrarAsistenciaBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+    </script>
+</body>
+</html>

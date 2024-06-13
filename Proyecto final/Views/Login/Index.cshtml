@@ -1,0 +1,112 @@
+﻿@model Proyecto_final.Models.UsuarioRolViewModel
+
+@{
+    ViewBag.Title = "Inicio de Sesión";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans" rel="stylesheet">
+</head>
+<body>
+    <ul class="menu">
+        <h1>CENTRO PARA LA INDUSTRIA PETROQUIMICA</h1>
+        <img src="~/Imagenes/logo.png" />
+    </ul>
+
+    <div class="menu2">
+        <ul class="menu2">
+            <li><a href="#">Inicio</a></li>
+            <li><a href="https://oferta.senasofiaplus.edu.co/sofia-oferta/">Sofia Plus</a></li>
+            <li><a href="#">Manual De Uso</a></li>
+            <li><a href="https://oferta.senasofiaplus.edu.co/sofia-oferta/buscar-oferta-educativa.html?radio=opcion201&buscador_texto=Ej%3A+Cocina%2C+Contabilidad&ofertaDisponible=on&ffv=-1&ciudad=Ej%3A+Cali%2C+Cartagena&campoEmpresa=&nfct=-1">Cursos Cortos</a></li>
+            <li><a href="https://biblioteca.sena.edu.co/">Biblioteca Virtual</a></li>
+        </ul>
+    </div>
+
+    <div class="Bienvenido">
+        <h1>BIENVENIDO AL SISTEMAS DE ASISTENCIA</h1>
+    </div>
+
+    <div class="login-box">
+        <h1>INICIA SESIÓN</h1>
+
+        @using (Html.BeginForm("Index", "Login", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.tipo_documento, "Tipo de Documento", new { @class = "control-label" })
+                <div>
+                    @Html.DropDownListFor(model => model.tipo_documento, new SelectList(
+                        new List<Object>{
+                            new { Value = "Cedula de Ciudadanía", Text = "Cédula de Ciudadanía" },
+                            new { Value = "Tarjeta", Text = "Tarjeta de Identidad" },
+                            new { Value = "C.E", Text = "Cédula de Extrajería" },
+                            new { Value = "PEP", Text = "PEP" },
+                            new { Value = "Permiso", Text = "Permiso por protección personal" }
+                        },
+                        "Value",
+                        "Text"),
+                        new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.numero_documento, "Número de Documento", new { @class = "control-label" })
+                <div>
+                    @Html.TextBoxFor(model => model.numero_documento, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.contraseña, "Contraseña", new { @class = "control-label" })
+                <div>
+                    @Html.PasswordFor(model => model.contraseña, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+        }
+
+        <a href="#modal">¿Olvidaste contraseña?</a>
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <a href="#" class="close">&times;</a>
+                <h1>¿Olvidaste tu contraseña?</h1>
+                <form>
+                    <div class="form-group">
+                        <label for="modal-document-type">Tipo de Identidad</label>
+                        <select name="document-type" id="modal-document-type" class="form-control">
+                            <option value="cedula">Cédula de Ciudadanía</option>
+                            <option value="Tarjeta">Tarjeta de Identidad</option>
+                            <option value="C.E">Cédula de Extranjería</option>
+                            <option value="PEP">PEP</option>
+                            <option value="Permiso">Permiso por protección personal</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="Numero" placeholder="Número de documento" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="Correo" placeholder="Correo electrónico" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+            </div>
+        </div>
+
+        @if (!string.IsNullOrEmpty(ViewBag.Error))
+        {
+            <div class="alert alert-danger" role="alert">@ViewBag.Error</div>
+        }
+
+        <p><a href="#">Registrarse aquí</a></p>
+    </div>
+</body>
+</html>

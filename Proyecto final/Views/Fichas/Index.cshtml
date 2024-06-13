@@ -1,0 +1,225 @@
+﻿@model IEnumerable<ClassLibrary11.Fichas>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultas de Fichas</title>
+    <link rel="stylesheet" href="styles2.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="profile">
+                <img src="user-icon.png" alt="User Icon">
+                <h2>USER NAME</h2>
+            </div>
+            <div class="welcome">
+                <p>BIENVENIDA SR(A) "NOMBRE DEL INSTRUCTOR" AL SISTEMA DE ASISTENCIAS DEL CENTRO PARA LA INDUSTRIA PETROQUIMICA</p>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header class="header">
+                <img src="~/Imagenes/logo.png" alt="SENA Logo">
+                <nav class="nav">
+                    <a href="~/Instructores/Index">INICIO</a>
+                    <a href="#">CERRAR SESIÓN</a>
+                </nav>
+            </header>
+            <section class="search-section">
+                <h1>CONSULTAS DE FICHAS</h1>
+                <form method="get" action="@Url.Action("Index", "Fichas")">
+                    <input type="text" name="searchTerm" placeholder="BUSQUEDA DE FICHA">
+                    <button class="buscar" type="submit">buscar</button>
+                </form>
+            </section>
+            <section class="cards-section">
+                @if (!Model.Any())
+                {
+                    <div class="no-results">
+                        <h2>No se encontraron fichas</h2>
+                        <p>Intenta buscar nuevamente con otro término.</p>
+                    </div>
+                }
+                else
+                {
+                    foreach (var item in Model)
+                    {
+                        <div class="card">
+                            <h3>@item.ficha_id</h3>
+                            <p>Fecha: @DateTime.Now.ToShortDateString()</p>
+                            <button onclick="verAsistencias('@item.ficha_id')">Ver Asistencias</button>
+                        </div>
+                    }
+                }
+            </section>
+        </main>
+    </div>
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+    function verAsistencias(fichaId) {
+        if (confirm('¿Estás seguro de querer ver las asistencias de esta ficha?')) {
+            $.ajax({
+                url: '/Asistencias1/CheckFicha',
+                type: 'GET',
+                data: { fichaId: fichaId },
+                success: function (response) {
+                    if (response.hasRecords) {
+                        window.location.href = '/Asistencias1/ByFicha?fichaId=' + fichaId;
+                    } else {
+                        alert('No se han encontrado estudiantes para esta ficha.');
+                    }
+                },
+                error: function () {
+                    alert('Ha ocurrido un error al verificar la ficha.');
+                }
+            });
+        }
+    }
+</script>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #DADADA;
+    }
+
+    .container {
+        display: flex;
+    }
+
+    .sidebar {
+        background-color: #39A900;
+        color: white;
+        padding: 20px;
+        width: 15%;
+        height: 100vh;
+    }
+
+    .profile {
+        text-align: center;
+    }
+
+        .profile img {
+            width: 50px;
+            height: 50px;
+        }
+
+    .welcome {
+        margin-top: 20px;
+    }
+
+    .main-content {
+        width: 80%;
+        padding: 20px;
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #39A900;
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+
+        .header img {
+            width: 100px;
+        }
+
+    .nav a {
+        margin: 0 10px;
+        text-decoration: none;
+        color: #ffffff;
+        font-weight: bold;
+    }
+
+    .search-section {
+        background-color: #00324D;
+        padding: 20px;
+        text-align: center;
+        color: white;
+        border-radius: 5px;
+        margin-top: 5px;
+    }
+
+        .search-section input {
+            width: 25%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 5px;
+            border-radius: 5px;
+        }
+
+    .cards-section {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding: 20px;
+    }
+
+    .buscar {
+        color: white;
+        background-color: #007BFF;
+        border: none;
+        padding: 10px 20px;
+        font-size: 18px;
+        cursor: pointer;
+        margin-left: 10px;
+        border-radius: 5px;
+    }
+
+    .card {
+        background-color: #FFFFFF;
+        padding: 20px;
+        width: 20%;
+        text-align: center;
+        border: 1px solid #E0E0E0;
+        border-radius: 5px;
+    }
+
+        .card h3 {
+            color: black;
+        }
+
+        .card button {
+            background-color: #39A900;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+            .card button:hover {
+                background-color: #45A049;
+            }
+
+    .no-results {
+        background-color: #FFFFFF;
+        padding: 20px;
+        text-align: center;
+        border: 1px solid #E0E0E0;
+        border-radius: 5px;
+        width: 100%;
+    }
+
+        .no-results h2 {
+            color: #FF0000;
+        }
+
+        .no-results p {
+            color: #333333;
+        }
+</style>

@@ -1,0 +1,182 @@
+﻿@model IEnumerable<ClassLibrary11.Instructores>
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SENA - Sistema de Asistencia</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter';
+            background-color: #DADADA;
+        }
+
+        img {
+            width: 100px;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .sidebar {
+            background-color: #39A900;
+            color: white;
+            width: 250px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+            .sidebar .user-icon {
+                width: 100px;
+                height: 100px;
+                margin: 50% auto 20px;
+                border-radius: 50%;
+                background-size: cover;
+                background-position: center;
+            }
+
+            .sidebar .welcome-message {
+                font-size: 14px;
+                margin-top: 200px;
+            }
+
+        .main-content {
+            flex-grow: 1;
+            background-color: #DADADA;
+        }
+        .content.card{
+            align-content:center;
+        }
+        .header {
+            background-color: #39A900;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            margin-left: 10%;
+            width: 80%;
+            border-radius: 10px;
+        }
+
+            .header nav a {
+                color: white;
+                text-decoration: none;
+                margin-left: 15px;
+            }
+
+                .header nav a:hover {
+                    text-decoration: underline;
+                }
+
+        .content {
+            padding: 20px;
+        }
+
+            .content h2 {
+                margin-top: 0;
+            }
+
+        .card {
+            background-color: white;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+            .card button {
+                background-color: #5cbf0d;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+
+                .card button:hover {
+                    background-color: #4ea50c;
+                }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            @{
+                var firstInstructor = Model.FirstOrDefault();
+                if (firstInstructor != null)
+                {
+                    <div class="user-icon" style="background-image: url('data:image/png;base64,@firstInstructor.imagen');"></div>
+                    <div class="user-name">@firstInstructor.nombre</div>
+                }
+                else
+                {
+                    <div class="user-icon"></div>
+                    <div class="user-name">USER NAME</div>
+                }
+            }
+            <div class="welcome-message">
+                BIENVENIDA SR(A)! NOMBRE DEL INSTRUCTOR AL SISTEMA DE ASISTENCIAS DEL CENTRO PARA LA INDUSTRIA PETROQUÍMICA
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="header">
+                <div class="logo">
+                    <img src="~/Imagenes/logo.png" alt="SENA Logo">
+                </div>
+                <nav>
+                    <a href="~/Instructores/Index">Inicio</a>
+                    <a href="~/Fichas/Index">Consultar Fichas</a>
+                    <a href="#">Cerrar Sesión</a>
+                </nav>
+            </div>
+            <div class="content">
+                <h2>Últimas Fichas</h2>
+                @foreach (var item in Model)
+                {
+                    <div class="card">
+                        <h3>@item.ficha_id</h3>
+                        <p>Fecha: @DateTime.Now.ToShortDateString()</p>
+                        <button onclick="verAsistencias('@item.ficha_id')">Ver Asistencias</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        function verAsistencias(fichaId) {
+            if (confirm('¿Estás seguro de querer ver las asistencias de esta ficha?')) {
+                $.ajax({
+                    url: '/Asistencias1/CheckFicha',
+                    type: 'GET',
+                    data: { fichaId: fichaId },
+                    success: function (response) {
+                        if (response.hasRecords) {
+                            window.location.href = '/Asistencias1/ByFicha?fichaId=' + fichaId;
+                        } else {
+                            alert('No se han encontrado estudiantes para esta ficha.');
+                        }
+                    },
+                    error: function () {
+                        alert('Ha ocurrido un error al verificar la ficha.');
+                    }
+                });
+            }
+        }
+    </script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,262 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-image: url('../Imagenes/imagenfondo.jpg');
+    color: white;
+    background-size: cover;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.login-box button {
+    width: 50%;
+    padding: 10px;
+    background-color: #08bd0e;
+    color: rgb(253, 253, 253);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.lineavertical {
+    transform: rotate(-90deg);
+    position: relative;
+    left: 80px;
+    height: 5px;
+    background-color: white;
+    width: 80px;
+}
+
+.opciones {
+    z-index: 20;
+}
+
+    .opciones li {
+        margin-top: -350px;
+        margin-left: 100px;
+        text-decoration: none;
+    }
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.menu2 {
+    background-color: #00020000;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    width: 100%;
+    top: 98px;
+    text-align: center;
+}
+
+    .menu2 a {
+        color: white;
+        display: inline-block;
+        text-align: center;
+        text-decoration: none;
+        padding: 14px 100px;
+    }
+
+    .menu2 li :hover {
+        background-color: rgba(53, 53, 53, 0.842);
+        border-radius: 10px;
+    }
+
+    .menu2 li {
+        display: inline-block;
+    }
+
+
+.menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #37a603;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 10;
+}
+
+    .menu h1 {
+        text-align: center;
+    }
+
+    .menu img {
+        width: 150px;
+        height: auto;
+        margin-top: -100px;
+        margin-left: 50px;
+    }
+
+.Bienvenido {
+    margin-left: auto;
+    opacity: 0; /* Inicialmente, el elemento estará invisible */
+    animation: aparecer 1s forwards; /* La animación dura 1 segundo */
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0; /* Empieza completamente transparente */
+        transform: translateX(-20px); /* Desplazado hacia la izquierda */
+    }
+
+    to {
+        opacity: 1; /* Termina completamente visible */
+        transform: translateX(0); /* Sin desplazamiento horizontal */
+    }
+}
+
+.login-box {
+    width: 17.9rem;
+    padding: 20px;
+    background-color: #bbacac38;
+    margin: 0 auto;
+    border-radius: 52px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.37);
+    text-align: center;
+    z-index: 30;
+    padding: 4.875rem 2.5rem;
+}
+
+    .login-box h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: white;
+        display: block;
+    }
+
+
+    .login-box input,
+    .login-box input[type="password"] {
+        width: 90%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-sizing: border-box;
+        outline: none;
+        border: none;
+        background: transparent;
+        border-bottom: 3px solid rgb(255, 253, 253);
+        color: white;
+    }
+
+    .login-box select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-sizing: border-box;
+        outline: none;
+    }
+
+input::placeholder {
+    color: white;
+    text-align: center;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 15px;
+    font-weight: 100;
+}
+
+
+
+
+
+.login-box input[type="submit"] {
+    width: 50%;
+    padding: 10px;
+    background-color: #08bd0e;
+    color: rgb(253, 253, 253);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    .login-box input[type="submit"]:hover {
+        background-color: #199e20;
+    }
+
+.login-box a {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: #f2fff3;
+    text-decoration: none;
+}
+
+    .login-box a:hover {
+        text-decoration: underline;
+    }
+
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: -100PX;
+    width: 100%;
+    height: 150%;
+    overflow: hidden;
+    background-color: rgba(14, 14, 14, 0.5);
+    color: black;
+}
+
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 20% auto;
+    padding: 100px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 20px;
+}
+
+.close {
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+    /* Estilo de la "X" de cerrar el modal en color rojo */
+    .close:before {
+        content: "×";
+        color: red;
+    }
+
+
+#modal:target {
+    display: block;
+    color: black;
+}
+
+.modal h1 {
+    color: black;
+}
+
+.modal-input {
+    color: black;
+}
+
+.modal-content input {
+    color: black;
+}
